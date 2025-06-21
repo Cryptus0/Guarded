@@ -1,4 +1,5 @@
 const { testServer } = require("../../../config.json");
+const { notifyDevs } = require("../../handlers/notifyDevs");
 const areCommandsDifferent = require("../../utils/areCommandsDifferent");
 const getApplicationCommands = require("../../utils/getApplicationCommands");
 const getLocalCommands = require("../../utils/getLocalCommands");
@@ -24,6 +25,7 @@ module.exports = async (client) => {
         if (localCommand.deleted) {
           await applicationCommands.delete(existingCommand.id);
           console.log(`⚙️ Deleted Command '${name}'.`);
+          notifyDevs(`⚙️ Deleted Command '${name}'.`);
           continue;
         }
 
@@ -34,10 +36,12 @@ module.exports = async (client) => {
           });
 
           console.log(`⚙️ Edited Command '${name}'.`);
+          notifyDevs(`⚙️ Edited Command '${name}'.`);
         }
       } else {
         if (localCommand.deleted) {
           console.log(`⚙️ Skipping Command '${name}' (Deleted).`);
+          notifyDevs(`⚙️ Skipping Command '${name}' (Deleted).`);
           continue;
         }
 
@@ -48,9 +52,11 @@ module.exports = async (client) => {
         });
 
         console.log(`⚙️ Registered Command '${name}'.`);
+        notifyDevs(`⚙️ Registered Command '${name}'.`);
       }
     }
   } catch (error) {
     console.log(`❌ Error Detected: ${error}`);
+    notifyDevs(`❌ Error Detected: ${error}`)
   }
 };

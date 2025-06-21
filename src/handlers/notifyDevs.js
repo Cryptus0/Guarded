@@ -15,7 +15,8 @@ function notifyDevs(MessageContent) {
     const embed = new EmbedBuilder()
     .setTitle('⚠️ System Notification ⚠️')
     .setDescription(MessageContent)
-    .setColor(0xff7d00);
+    .setColor(0xff7d00)
+    .setTimestamp();
 
     // Send the embed
     webhookClient.send({ embeds: [embed] })
