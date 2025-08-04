@@ -48,7 +48,6 @@ While incomplete, the following features were part of the roadmap:
 Clone and run the project locally:
 
 ```bash
-git clone https://github.com/your-username/Guarded.git
-cd Guarded
+git clone https://github.com/Cryptus0/Guarded
 npm install
 # Configure your bot token and settings
